@@ -1,6 +1,5 @@
 package com.rains;
 
-import com.rains.config.SwiftpassConfig;
 import com.rains.entity.RainsTest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,7 +8,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 
 /**
@@ -25,16 +31,19 @@ import org.springframework.context.annotation.ImportResource;
  **/
 @SpringBootApplication
 @ServletComponentScan
+@EnableScheduling
 public class Application extends SpringBootServletInitializer {
 
 
 	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+	protected
+	SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(Application.class);
 	}
 
 	public static void main(String[] args) {
 
+		System.out.println("" + System.getProperty("java.awt.headless"));
 		SpringApplication app = new SpringApplication(Application.class);
 		app.run(args);
 

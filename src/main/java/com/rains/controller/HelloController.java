@@ -11,11 +11,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Date;
 
 /**
  * Created by Administrator on 2016-08-22.
@@ -118,6 +121,15 @@ public class HelloController {
         throw new Exception("发生错误");
 
     }
+
+
+    /**
+     * 定时任务！
+     */
+    /*@Scheduled(fixedDelay = 5000)
+    public void reportCurrentTime(){
+        System.out.println(new Date());
+    }*/
 
 
 
