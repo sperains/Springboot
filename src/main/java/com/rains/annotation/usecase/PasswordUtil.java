@@ -1,7 +1,7 @@
 package com.rains.annotation.usecase;
 
 
-import com.sun.tools.javac.util.List;
+import java.util.List;
 
 /**
  * Created by Rains on 2016/8/24.
