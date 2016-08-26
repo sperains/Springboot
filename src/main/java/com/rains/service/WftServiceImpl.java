@@ -1,10 +1,10 @@
 package com.rains.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rains.config.SwiftpassConfig;
 import com.rains.dao.CloudAccountInfo;
 import com.rains.dao.OrderInfoDao;
 import com.rains.util.*;
-import com.sun.javaws.jnl.XMLUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -14,6 +14,7 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,8 @@ import java.util.Map;
 import java.util.SortedMap;
 
 /**
- * Created by Administrator on 2016-08-24.
+ * Created by Rains
+ * on 2016-08-24.
  */
 @Service
 public class WftServiceImpl implements WftService {
@@ -182,7 +184,6 @@ public class WftServiceImpl implements WftService {
        client = HttpClients.createDefault();
        response = client.execute(httpPost);
 
-       logger.info("" + response);
 
        if(response != null && response.getEntity() != null){
            try {
@@ -196,7 +197,11 @@ public class WftServiceImpl implements WftService {
                    return ;
                }
                if("0".equals(resultMap.get("status")) && "0".equals(resultMap.get("result_code"))){
-
+                    String code_img_url =  resultMap.get("code_img_url");
+                    logger.info(code_img_url);
+                    message = "ok";
+                    ObjectMapper mapper = new ObjectMapper();
+                    resp.getWriter().write("1fsdf");
                }
 
 

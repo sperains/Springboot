@@ -1,7 +1,8 @@
 package com.rains.controller;
 
-import com.rains.entity.PayInfo;
 import com.rains.service.WftService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,14 +20,17 @@ import java.io.IOException;
 @Controller
 public class WftpayController {
 
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
+
     @Autowired
     private WftService wftService;
 
 
     /**
      *
-     * @param req
-     * @param resp
+     * @param req 请求
+     * @param resp 相应
      * @throws IOException
      */
     @RequestMapping("/wftpay")
@@ -40,6 +44,14 @@ public class WftpayController {
             System.out.println("query");
         }
 
+    }
+
+
+    @RequestMapping("/success")
+    @ResponseBody
+    public String paySuccess(){
+        logger.info("请求支付成功");
+        return "success";
     }
 
 }
